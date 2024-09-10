@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <context id="vs" targetRuntime="MyBatis3">
+        <property name="mybatisVersion" value="3.5.7"/>
+        <property name="autoDelimitKeywords" value="true"/>
+        <property name="javaFileEncoding" value="UTF-8"/>
+        <property name="javaFormatter"
+                  value="org.mybatis.generator.api.dom.DefaultJavaFormatter"/>
+        <property name="xmlFormatter"
+                  value="org.mybatis.generator.api.dom.DefaultXmlFormatter"/>
+
+        <property name="beginningDelimiter" value="&quot;"/>
+        <property name="endingDelimiter" value="&quot;"/>
+        <!--  注意下列插件仅对mysql验证有效,如用其他数据库,请按需检验后使用 -->
+        <!-- Example 目标包修改插件 -->
+        <plugin type="com.itfsw.mybatis.generator.plugins.ExampleTargetPlugin">
+            <!-- 修改Example类生成到目标包下 -->
+            <property name="targetPackage" value="com.example.demo.entity.example"/>
+        </plugin>
+        <!-- 数据Model链式构建插件 -->
+        <plugin type="com.itfsw.mybatis.generator.plugins.ModelBuilderPlugin"/>
+        <!-- 查询单条数据插件 -->
+        <plugin type="com.itfsw.mybatis.generator.plugins.SelectOneByExamplePlugin"/>
+        <!-- MySQL分页插件 -->
+        <plugin type="com.itfsw.mybatis.generator.plugins.LimitPlugin">
+            <!-- 通过配置startPage影响Example中的page方法开始分页的页码，默认分页从0开始 -->
+            <property name="startPage" value="0"/>
+        </plugin>
+        <!-- Example Criteria 增强插件 -->
+        <plugin type="com.itfsw.mybatis.generator.plugins.ExampleEnhancedPlugin">
+            <!-- 是否支持已经过时的andIf方法（推荐使用when代替），默认支持 -->
+            <property name="enableAndIf" value="true"/>
+        </plugin>
+        <!-- 批量插入插件 : 只支持mysql及sqlserver-->
+        <plugin type="com.itfsw.mybatis.generator.plugins.BatchInsertPlugin">
+            <!--
+            开启后可以实现官方插件根据属性是否为空决定是否插入该字段功能
+            ！需开启allowMultiQueries=true多条sql提交操作，所以不建议使用！插件默认不开启
+            -->
+            <property name="allowMultiQueries" value="false"/>
+        </plugin>
+        <!-- 逻辑删除插件  针对仅对表记录进行逻辑删除的支持, 请使用前仔细阅读说明-->
+        <!-- 逻辑删除插件 -->
+        <plugin type="com.itfsw.mybatis.generator.plugins.LogicalDeletePlugin">
+            <!-- 这里配置的是全局逻辑删除列和逻辑删除值，当然在table中配置的值会覆盖该全局配置 -->
+            <!-- 逻辑删除列类型只能为数字、字符串或者布尔类型 -->
+            <property name="logicalDeleteColumn" value="delete_flag"/>
+            <!-- 逻辑删除-已删除值 -->
+            <property name="logicalDeleteValue" value="1"/>
+            <!-- 逻辑删除-未删除值 -->
+            <property name="logicalUnDeleteValue" value="0"/>
+            <!-- 是否生成逻辑删除常量(只有开启时 logicalDeleteConstName、logicalUnDeleteConstName 才生效) -->
+            <property name="enableLogicalDeleteConst" value="true"/>
+            <!-- 逻辑删除常量名称，不配置默认为 IS_DELETED -->
+            <property name="logicalDeleteConstName" value="IS_DELETED"/>
+            <!-- 逻辑删除常量（未删除）名称，不配置默认为 NOT_DELETED -->
+            <property name="logicalUnDeleteConstName" value="NOT_DELETED"/>
+        </plugin>
+        <!-- 数据Model属性对应Column获取插件 -->
+        <plugin type="com.itfsw.mybatis.generator.plugins.ModelColumnPlugin"/>
+        <!-- 存在即更新插件 -->
+        <plugin type="com.itfsw.mybatis.generator.plugins.UpsertPlugin">
+            <!--
+            支持upsertByExample，upsertByExampleSelective操作
+            ！需开启allowMultiQueries=true多条sql提交操作，所以不建议使用！插件默认不开启
+            -->
+            <property name="allowMultiQueries" value="false"/>
+            <!--
+            开启批量功能，支持batchUpsert,batchUpsertWithBLOBs,batchUpserSelective
+            ！这几个方法中无法支持IncrementsPlugin的方法！插件默认不开启
+            -->
+            <property name="allowBatchUpsert" value="fasle"/>
+        </plugin>
+
+        <!-- Selective选择插入更新增强插件 -->
+        <plugin type="com.itfsw.mybatis.generator.plugins.SelectiveEnhancedPlugin"/>
+        <!-- 增量插件 -->
+        <plugin type="com.itfsw.mybatis.generator.plugins.IncrementPlugin"/>
+        <!-- Example:
+            <table tableName="tb">
+            配置需要进行增量操作的列名称（英文半角逗号分隔）
+        <property name="incrementColumns" value="field1,field2"/>
+            </table>
+         -->
+
+        <!--覆盖生成XML文件-->
+        <plugin type="org.mybatis.generator.plugins.UnmergeableXmlMappersPlugin" />
+        
+        <commentGenerator>
+            <property name="suppressDate" value="true"/>
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+        <!-- 根据实际数据库驱动配置 -->
+        <!-- Postgrepsql         -->
+        <jdbcConnection driverClass="org.postgresql.Driver"
+                        connectionURL="jdbc:postgresql://9.30.119.218:5432/camel-test"
+                        userId="root"
+                        password="Aptx4869#@">
+        </jdbcConnection>
+
+        <!-- mysql
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+           connectionURL="jdbc:mysql://9.111.97.21:30889/caes?useSSL=false"
+           userId="root" password="mysql">
+           <property name = "nullCatalogMeansCurrent" value="true"/>
+       </jdbcConnection>
+       -->
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+        <!-- 生成实体的包名和位置 -->
+        <javaModelGenerator
+                targetPackage="com.example.demo.entity"
+                targetProject="./src/main/java">
+            <property name="enableSubPackages" value="false"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+        <!-- 生成映射文件的包名和位置 -->
+        <sqlMapGenerator targetPackage="mapper"
+                         targetProject="./src/main/resources/mybatis">
+            <property name="enableSubPackages" value="false"/>
+        </sqlMapGenerator>
+
+        <!-- 生成DAO的包名和位置 -->
+        <javaClientGenerator type="XMLMAPPER"
+                             targetPackage="com.example.demo.mapper"
+                             targetProject="./src/main/java">
+            <property name="enableSubPackages" value="false"/>
+        </javaClientGenerator>
+
+<!--        <table schema="vs_conf" tableName="dataset_field" domainObjectName="DataSetFieldDO"-->
+<!--               enableCountByExample="true" enableUpdateByExample="true"-->
+<!--               enableDeleteByExample="true" enableSelectByExample="true"-->
+<!--               selectByExampleQueryId="true">-->
+<!--            <property name="constructorBased" value="false"/>-->
+<!--            <property name="ignoreQualifiersAtRuntime" value="false"/>-->
+<!--            <property name="immutable" value="false"/>-->
+<!--            <property name="useActualColumnNames" value="false"/>-->
+<!--            <property name="logicalDeleteColumn" value="delete_flag"/>-->
+<!--            &lt;!&ndash; 逻辑删除-已删除值 &ndash;&gt;-->
+<!--            <property name="logicalDeleteValue" value="Y"/>-->
+<!--            &lt;!&ndash; 逻辑删除-未删除值 &ndash;&gt;-->
+<!--            <property name="logicalUnDeleteValue" value="N"/>-->
+<!--        </table>-->
+<!--        <table schema="vs_conf" tableName="dataset_union" domainObjectName="DataSetUnionDO"-->
+<!--               enableCountByExample="true" enableUpdateByExample="true"-->
+<!--               enableDeleteByExample="true" enableSelectByExample="true"-->
+<!--               selectByExampleQueryId="true">-->
+<!--            <property name="constructorBased" value="false"/>-->
+<!--            <property name="ignoreQualifiersAtRuntime" value="false"/>-->
+<!--            <property name="immutable" value="false"/>-->
+<!--            <property name="useActualColumnNames" value="false"/>-->
+<!--            <property name="logicalDeleteColumn" value="delete_flag"/>-->
+<!--            &lt;!&ndash; 逻辑删除-已删除值 &ndash;&gt;-->
+<!--            <property name="logicalDeleteValue" value="Y"/>-->
+<!--            &lt;!&ndash; 逻辑删除-未删除值 &ndash;&gt;-->
+<!--            <property name="logicalUnDeleteValue" value="N"/>-->
+<!--        </table>-->
+<!--        <table schema="vs_conf" tableName="dataset_union_condition" domainObjectName="DataSetUnionConditionDO"-->
+<!--               enableCountByExample="true" enableUpdateByExample="true"-->
+<!--               enableDeleteByExample="true" enableSelectByExample="true"-->
+<!--               selectByExampleQueryId="true">-->
+<!--            <property name="constructorBased" value="false"/>-->
+<!--            <property name="ignoreQualifiersAtRuntime" value="false"/>-->
+<!--            <property name="immutable" value="false"/>-->
+<!--            <property name="useActualColumnNames" value="false"/>-->
+<!--            <property name="logicalDeleteColumn" value="delete_flag"/>-->
+<!--            &lt;!&ndash; 逻辑删除-已删除值 &ndash;&gt;-->
+<!--            <property name="logicalDeleteValue" value="Y"/>-->
+<!--            &lt;!&ndash; 逻辑删除-未删除值 &ndash;&gt;-->
+<!--            <property name="logicalUnDeleteValue" value="N"/>-->
+<!--        </table>-->
+<!--        <table schema="vs_conf" tableName="dataset_view_field_rel" domainObjectName="DataSetViewFieldRelDO"-->
+<!--               enableCountByExample="true" enableUpdateByExample="true"-->
+<!--               enableDeleteByExample="true" enableSelectByExample="true"-->
+<!--               selectByExampleQueryId="true">-->
+<!--            <property name="constructorBased" value="false"/>-->
+<!--            <property name="ignoreQualifiersAtRuntime" value="false"/>-->
+<!--            <property name="immutable" value="false"/>-->
+<!--            <property name="useActualColumnNames" value="false"/>-->
+<!--            <property name="logicalDeleteColumn" value="delete_flag"/>-->
+<!--            &lt;!&ndash; 逻辑删除-已删除值 &ndash;&gt;-->
+<!--            <property name="logicalDeleteValue" value="Y"/>-->
+<!--            &lt;!&ndash; 逻辑删除-未删除值 &ndash;&gt;-->
+<!--            <property name="logicalUnDeleteValue" value="N"/>-->
+<!--        </table>-->
+<!--        <table schema="vs_conf" tableName="dataset_filter" domainObjectName="DataSetFilterDO"-->
+<!--               enableCountByExample="true" enableUpdateByExample="true"-->
+<!--               enableDeleteByExample="true" enableSelectByExample="true"-->
+<!--               selectByExampleQueryId="true">-->
+<!--            <property name="constructorBased" value="false"/>-->
+<!--            <property name="ignoreQualifiersAtRuntime" value="false"/>-->
+<!--            <property name="immutable" value="false"/>-->
+<!--            <property name="useActualColumnNames" value="false"/>-->
+<!--            <property name="logicalDeleteColumn" value="delete_flag"/>-->
+<!--            &lt;!&ndash; 逻辑删除-已删除值 &ndash;&gt;-->
+<!--            <property name="logicalDeleteValue" value="Y"/>-->
+<!--            &lt;!&ndash; 逻辑删除-未删除值 &ndash;&gt;-->
+<!--            <property name="logicalUnDeleteValue" value="N"/>-->
+<!--        </table>-->
+
+<!--        <table schema="vs_conf" tableName="dataset" domainObjectName="DataSetDO"-->
+<!--               enableCountByExample="true" enableUpdateByExample="true"-->
+<!--               enableDeleteByExample="true" enableSelectByExample="true"-->
+<!--               selectByExampleQueryId="true">-->
+<!--            <property name="constructorBased" value="false"/>-->
+<!--            <property name="ignoreQualifiersAtRuntime" value="false"/>-->
+<!--            <property name="immutable" value="false"/>-->
+<!--            <property name="useActualColumnNames" value="false"/>-->
+<!--            <property name="logicalDeleteColumn" value="delete_flag"/>-->
+<!--            &lt;!&ndash; 逻辑删除-已删除值 &ndash;&gt;-->
+<!--            <property name="logicalDeleteValue" value="Y"/>-->
+<!--            &lt;!&ndash; 逻辑删除-未删除值 &ndash;&gt;-->
+<!--            <property name="logicalUnDeleteValue" value="N"/>-->
+<!--        </table>-->
+
+<!--        <table schema="vs_conf" tableName="dataset_group" domainObjectName="DataSetGroupDO"-->
+<!--               enableCountByExample="true" enableUpdateByExample="true"-->
+<!--               enableDeleteByExample="true" enableSelectByExample="true"-->
+<!--               selectByExampleQueryId="true">-->
+<!--            <property name="constructorBased" value="false"/>-->
+<!--            <property name="ignoreQualifiersAtRuntime" value="false"/>-->
+<!--            <property name="immutable" value="false"/>-->
+<!--            <property name="useActualColumnNames" value="false"/>-->
+<!--            <property name="logicalDeleteColumn" value="delete_flag"/>-->
+<!--            &lt;!&ndash; 逻辑删除-已删除值 &ndash;&gt;-->
+<!--            <property name="logicalDeleteValue" value="Y"/>-->
+<!--            &lt;!&ndash; 逻辑删除-未删除值 &ndash;&gt;-->
+<!--            <property name="logicalUnDeleteValue" value="N"/>-->
+<!--        </table>-->
+
+<!--        <table schema="vs_conf" tableName="dataset_aggregation_field" domainObjectName="DataSetAggregationFieldDO"-->
+<!--               enableCountByExample="true" enableUpdateByExample="true"-->
+<!--               enableDeleteByExample="true" enableSelectByExample="true"-->
+<!--               selectByExampleQueryId="true">-->
+<!--            <property name="constructorBased" value="false"/>-->
+<!--            <property name="ignoreQualifiersAtRuntime" value="false"/>-->
+<!--            <property name="immutable" value="false"/>-->
+<!--            <property name="useActualColumnNames" value="false"/>-->
+<!--            <property name="logicalDeleteColumn" value="delete_flag"/>-->
+<!--            &lt;!&ndash; 逻辑删除-已删除值 &ndash;&gt;-->
+<!--            <property name="logicalDeleteValue" value="Y"/>-->
+<!--            &lt;!&ndash; 逻辑删除-未删除值 &ndash;&gt;-->
+<!--            <property name="logicalUnDeleteValue" value="N"/>-->
+<!--        </table>-->
+<!--        <table schema="vs_conf" tableName="dataset_aggregation_filter" domainObjectName="DataSetAggregationFilterDO"-->
+<!--               enableCountByExample="true" enableUpdateByExample="true"-->
+<!--               enableDeleteByExample="true" enableSelectByExample="true"-->
+<!--               selectByExampleQueryId="true">-->
+<!--            <property name="ignoreQualifiersAtRuntime" value="false"/>-->
+<!--            <property name="immutable" value="false"/>-->
+<!--            <property name="useActualColumnNames" value="false"/>-->
+<!--            <property name="logicalDeleteColumn" value="delete_flag"/>-->
+<!--            &lt;!&ndash; 逻辑删除-已删除值 &ndash;&gt;-->
+<!--            <property name="logicalDeleteValue" value="Y"/>-->
+<!--            &lt;!&ndash; 逻辑删除-未删除值 &ndash;&gt;-->
+<!--            <property name="logicalUnDeleteValue" value="N"/>-->
+<!--        </table>-->
+                <!-- <table schema="vs_conf" tableName="message_send_history" domainObjectName="MessageSendHistoryDO"
+                       enableCountByExample="true" enableUpdateByExample="true"
+                       enableDeleteByExample="true" enableSelectByExample="true"
+                       selectByExampleQueryId="true">
+                    <property name="constructorBased" value="false"/>
+                    <property name="ignoreQualifiersAtRuntime" value="false"/>
+                    <property name="immutable" value="false"/>
+                    <property name="useActualColumnNames" value="false"/>
+                    <property name="logicalDeleteColumn" value="delete_flag"/>
+                    <property name="logicalDeleteValue" value="Y"/>
+                    <property name="logicalUnDeleteValue" value="N"/>
+                </table> -->
+                <!-- 
+                
+                <table schema="vs_conf" tableName="app_theme" domainObjectName="AppThemeDO"
+                       enableCountByExample="true" enableUpdateByExample="true"
+                       enableDeleteByExample="true" enableSelectByExample="true"
+                       selectByExampleQueryId="true">
+                    <property name="constructorBased" value="false"/>
+                    <property name="ignoreQualifiersAtRuntime" value="false"/>
+                    <property name="immutable" value="false"/>
+                    <property name="useActualColumnNames" value="false"/>
+                    <property name="logicalDeleteColumn" value="delete_flag"/>
+                    <property name="logicalDeleteValue" value="Y"/>
+                    <property name="logicalUnDeleteValue" value="N"/>
+                </table> 
+                <table schema="vs_conf" tableName="page" domainObjectName="PageDO"
+					enableCountByExample="true" enableUpdateByExample="true"
+					enableDeleteByExample="true" enableSelectByExample="true"
+					selectByExampleQueryId="true">
+					<property name="constructorBased" value="false" />
+					<property name="ignoreQualifiersAtRuntime" value="true" />
+					<property name="immutable" value="false" />
+					<property name="useActualColumnNames" value="false" />
+			        <property name="logicalDeleteColumn" value="delete_flag"/>
+			        <property name="logicalDeleteValue" value="Y"/>
+			        <property name="logicalUnDeleteValue" value="N"/>
+				</table>
+				-->
+				<table schema="public" tableName="users" domainObjectName="UserDO"
+				        enableCountByExample="true" enableUpdateByExample="true"
+				        enableDeleteByExample="true" enableSelectByExample="true"
+				        selectByExampleQueryId="true">
+				        <property name="constructorBased" value="false" />
+				        <property name="ignoreQualifiersAtRuntime" value="true" />
+				        <property name="immutable" value="false" />
+				        <property name="useActualColumnNames" value="false" />
+						<property name="logicalDeleteColumn" value="delete_flag"/>
+						<property name="logicalDeleteValue" value="Y"/>
+						<property name="logicalUnDeleteValue" value="N"/>
+				</table>
+    </context>
+</generatorConfiguration>
